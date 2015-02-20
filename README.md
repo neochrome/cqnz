@@ -18,7 +18,7 @@ $ cqnz my-diagram.txt
 
 #### With simple theme
 ```
-$ marky --theme simple my-diagram.txt
+$ cqnz --theme simple my-diagram.txt
 ```
 
 ## Release notes
