@@ -1,0 +1,6 @@
+Title: An example diagram
+
+A->B: text
+B->A: text
+
+Note over A: Note over A
