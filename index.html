@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<title>cqnz</title>
+		<script src="./lib/raphael-min.js"></script>
+		<script src="./lib/underscore-min.js"></script>
+		<script src="./lib/sequence-diagram-min.js"></script>
+		<link rel="stylesheet" href="./lib/sequence-diagram-min.css"/>
+	</head>
+	<body>
+		<div id="error"></div>
+		<div id="diagram"></div>
+		<script>
+			const options = location.hash
+				.substring(1)
+				.split('&')
+				.map(kv => kv.split('='))
+				.reduce((o, p) => { o[p[0]] = p[1]; return o; }, {});
+			document.title = `cqnz - ${options.file}`;
+
+			const displayError = (text) => {
+				document.getElementById('error').innerText = text || '';
+			};
+
+			require('electron').ipcRenderer.on('content', (_, content) => {
+				displayError();
+				try {
+					document.getElementById('diagram').innerText = '';
+					Diagram.parse(content).drawSVG('diagram', { theme: options.theme });
+				} catch (err) {
+					displayError(err.toString());
+				}
+			});
+		</script>
+	</body>
+</html>
