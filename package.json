@@ -1,6 +1,7 @@
 {
   "name": "cqnz",
   "version": "1.0.0",
+  "license": "Unlicense",
   "description": "A Sequence Diagram previewer",
   "repository": {
     "type": "git",
